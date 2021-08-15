@@ -50,10 +50,11 @@ RUN export DEBIAN_FRONTEND=noninteractive \
        xdg-utils \
     && rm -rf /var/lib/apt/lists \
     && rm -rf /var/cache/apt/ \
-    && mkdir -p /data \
+    && mkdir -p /data/.config/openbox/ \
     && groupadd --gid 1000 app \
     && useradd --home-dir /data --shell /bin/bash --uid 1000 --gid 1000 app \
-    && mkdir -p /usr/share/desktop-directories
+    && mkdir -p /usr/share/desktop-directories \
+    && mv /etc/xdg/openbox/rc.xml /data/.config/openbox/rc.xml
 
 COPY --from=rootfs-builder /rootfs/ /
 
