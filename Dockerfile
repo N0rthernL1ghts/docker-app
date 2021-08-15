@@ -1,3 +1,5 @@
+ARG DEBIAN_RELEASE=bullseye-slim
+
 # Stage 1 - Fetch and build easy-novnc
 FROM golang:1.14-buster AS easy-novnc-build
 
@@ -36,7 +38,7 @@ COPY ["./rootfs", "/rootfs/"]
 
 
 # Final stage - environment
-FROM debian:bullseye-slim AS app
+FROM debian:${DEBIAN_RELEASE} AS app
 
 RUN export DEBIAN_FRONTEND=noninteractive \
     && apt-get update -y \
