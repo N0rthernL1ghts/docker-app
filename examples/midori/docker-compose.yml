@@ -1,0 +1,30 @@
+version: "3.7"
+
+services:
+
+  app:
+    build:
+      context: .
+    volumes:
+      - data:/data
+      - /dev/snd:/dev/snd
+    networks:
+      default:
+    devices:
+     - /dev/snd
+    restart: unless-stopped
+
+  caddy:
+    image: caddy:alpine
+    init: true
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+    networks:
+      default:
+    restart: unless-stopped
+
+networks:
+  default:
+
+volumes:
+  data:
