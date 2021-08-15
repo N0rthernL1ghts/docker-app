@@ -1,0 +1,5 @@
+#!/usr/bin/with-contenv sh
+
+echo "> Starting noVNC"
+
+exec /usr/local/bin/easy-novnc --addr :8080 --host localhost --port 5900 --no-url-password --novnc-params "resize=remote"

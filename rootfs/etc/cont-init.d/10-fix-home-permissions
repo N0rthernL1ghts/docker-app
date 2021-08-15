@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+
+echo "> Fixing permissions on /data"
+
+attr /data/ true app:app 0770 2771

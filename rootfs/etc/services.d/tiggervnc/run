@@ -1,0 +1,5 @@
+#!/usr/bin/with-contenv sh
+
+echo "> Starting TigerVNC server"
+
+exec /usr/bin/Xtigervnc -desktop "${APP_NAME}" -localhost -rfbport 5900 -SecurityTypes None -AlwaysShared -AcceptKeyEvents -AcceptPointerEvents -AcceptSetDesktopSize -SendCutText -AcceptCutText :0

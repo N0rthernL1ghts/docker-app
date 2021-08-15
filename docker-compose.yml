@@ -1,0 +1,27 @@
+version: "3.7"
+
+services:
+
+  app:
+    build:
+      context: .
+    volumes:
+      - data:/data
+    networks:
+      default:
+    restart: unless-stopped
+
+  caddy:
+    image: caddy:alpine
+    init: true
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+    networks:
+      default:
+    restart: unless-stopped
+
+networks:
+  default:
+
+volumes:
+  data:
