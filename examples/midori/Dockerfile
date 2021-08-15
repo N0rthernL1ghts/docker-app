@@ -11,3 +11,5 @@ RUN export DEBIAN_FRONTEND=noninteractive \
 
 COPY ["./rootfs", "/"]
 COPY ["./openbox_dist_rc.xml", "/data/.config/openbox/rc.xml"]
+
+ENV APP_NAME "Midori"
