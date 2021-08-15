@@ -653,7 +653,6 @@
 <applications>
   <application class="Midori">
     <maximized>yes</maximized>
-    <fullscreen>yes</fullscreen>
     <focus>yes</focus>
     <decor>no</decor>
   </application>
