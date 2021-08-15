@@ -10,3 +10,4 @@ RUN export DEBIAN_FRONTEND=noninteractive \
     && rm -rf /var/cache/apt/
 
 COPY ["./rootfs", "/"]
+COPY ["./openbox_dist_rc.xml", "/data/.config/openbox/rc.xml"]
