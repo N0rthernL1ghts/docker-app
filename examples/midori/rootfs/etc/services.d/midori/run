@@ -2,4 +2,4 @@
 
 echo "> Starting Midori Web Browser"
 
-exec /usr/bin/midori "https://github.com/N0rthernL1ghts/docker-app"
+s6-setuidgid app /usr/bin/midori -a "https://github.com/N0rthernL1ghts/docker-app"
