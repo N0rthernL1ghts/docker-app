@@ -18,23 +18,13 @@ ADD https://gist.githubusercontent.com/xZero707/7a3fb3e12e7192c96dbc60d45b3dc91d
 RUN chmod a+x /attr
 
 
-# Stage 3 - Download and prepare S6 overlay
-FROM ${ARCH}/alpine AS s6-overlay-downloader
 
-ARG S6_OVERLAY_RELEASE=https://github.com/just-containers/s6-overlay/releases/latest/download/s6-overlay-amd64.tar.gz
-ENV S6_OVERLAY_RELEASE=${S6_OVERLAY_RELEASE}
-ADD ${S6_OVERLAY_RELEASE} /tmp/s6overlay.tar.gz
-
-RUN mkdir -p /tmp/rootfs/ \
-     && tar xzf /tmp/s6overlay.tar.gz -C /tmp/rootfs/
-
-
-# Stage 4 - Prepare rootfs
+# Stage 3 - Prepare rootfs
 FROM scratch AS rootfs-builder
 
-COPY --from=attr-downloader /attr /rootfs/usr/bin/
-COPY --from=easy-novnc-build /bin/easy-novnc /rootfs/usr/local/bin/
-COPY --from=s6-overlay-downloader /tmp/rootfs /rootfs/
+COPY --from=attr-downloader          ["/attr",           "/rootfs/usr/bin/"]
+COPY --from=easy-novnc-build         ["/bin/easy-novnc", "/rootfs/usr/local/bin/"]
+COPY --from=nlss/s6-rootfs:2.2.0.3   ["/",               "/rootfs/"]
 COPY ["./rootfs", "/rootfs/"]
 
 
